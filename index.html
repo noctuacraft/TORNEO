@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneo Wii Sports Tenis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="wii-background"></div>
+    
+    <!-- Contenedor oculto para las imágenes -->
+    <div id="player-images" style="display: none;">
+        <img id="img-Thiago" src="img/Thiago.jpg" alt="Thiago Santamarina">
+        <img id="img-Gonzalo" src="img/Gonzalo.jpg" alt="Gonzalo Campos">
+        <img id="img-Joaquin" src="img/Joaquin.jpg" alt="Joaquin Riedel">
+        <img id="img-Augusto" src="img/Augusto.jpg" alt="Augusto Turner">
+        <img id="img-Melody" src="img/Melody.jpg" alt="Melody Bosio">
+        <img id="img-Zoe" src="img/Zoe.jpg" alt="Zoe Billar">
+        <img id="img-Vienni" src="img/vienni.jpg" alt="Vienni">
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="tournament-title">Torneo Wii Sports Tenis</h1>
+            <p class="tournament-subtitle">7 Jugadores • Fase de Liga • Semifinales • Final • Con E.V.A. IA</p>
+        </div>
+        
+        <!-- Panel de E.V.A. -->
+        <div class="eva-panel" id="eva-panel">
+            <h3 class="eva-title"><i class="fas fa-robot"></i> E.V.A. - Asistente Virtual del Torneo</h3>
+            <div class="eva-content">
+                <div class="eva-avatar">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="eva-message" id="eva-message">
+                    ¡Hola! Soy E.V.A., tu asistente de torneos. Estoy aquí para ayudarte con análisis, predicciones y recomendaciones durante todo el torneo.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Panel de Información -->
+        <div class="info-panel">
+            <h3><i class="fas fa-info-circle"></i> Formato del Torneo</h3>
+            <div class="info-content">
+                <p><strong>Fase de Liga:</strong> Todos contra todos (7 partidos por jugador)</p>
+                <p><strong>Puntuación:</strong> Victoria = 3 puntos | Derrota = 0 puntos</p>
+                <p><strong>Semifinales:</strong> 1° vs 4° y 2° vs 3°</p>
+                <p><strong>Final:</strong> Ganadores de semifinales</p>
+            </div>
+        </div>
+        
+        <!-- Pantalla de Sorteo -->
+        <div id="draw-screen" class="screen active">
+            <div class="draw-container">
+                <h2><i class="fas fa-random"></i> Sorteo de Números</h2>
+                <p class="draw-description">Se asignará un número del 1 al 7 a cada jugador de forma aleatoria</p>
+                
+                <div class="players-draw" id="players-draw">
+                    <!-- Los jugadores se cargarán aquí con JavaScript -->
+                </div>
+                
+                <button class="nav-btn primary-btn" id="start-draw-btn">
+                    <i class="fas fa-play"></i> Realizar Sorteo
+                </button>
+            </div>
+        </div>
+        
+        <!-- Pantalla de Liga -->
+        <div id="league-screen" class="screen">
+            <div class="league-container">
+                <h2><i class="fas fa-table"></i> Fase de Liga</h2>
+                
+                <!-- Tabla de Posiciones -->
+                <div class="standings-container">
+                    <h3>Tabla de Posiciones</h3>
+                    <table class="standings-table" id="standings-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Jugador</th>
+                                <th>PJ</th>
+                                <th>PG</th>
+                                <th>PP</th>
+                                <th>Puntos</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standings-body">
+                            <!-- Las posiciones se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Partidos de Liga -->
+                <div class="matches-container">
+                    <h3>Partidos de Liga</h3>
+                    <div class="matches-grid" id="league-matches">
+                        <!-- Los partidos se cargarán aquí -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn" id="back-to-draw-btn">
+                    <i class="fas fa-arrow-left"></i> Volver al Sorteo
+                </button>
+                <button class="nav-btn primary-btn" id="start-playoffs-btn" disabled>
+                    <i class="fas fa-trophy"></i> Iniciar Semifinales
+                </button>
+            </div>
+        </div>
+        
+        <!-- Pantalla de Playoffs -->
+        <div id="playoffs-screen" class="screen">
+            <div class="playoffs-container">
+                <h2><i class="fas fa-chess-board"></i> Fase Final</h2>
+                
+                <!-- Semifinales -->
+                <div class="playoff-round">
+                    <h3>Semifinales</h3>
+                    <div class="playoff-matches" id="semifinals-matches">
+                        <!-- Semifinales se cargarán aquí -->
+                    </div>
+                </div>
+                
+                <!-- Final -->
+                <div class="playoff-round">
+                    <h3>Final</h3>
+                    <div class="playoff-matches" id="final-match">
+                        <!-- Final se cargará aquí -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn" id="back-to-league-btn">
+                    <i class="fas fa-arrow-left"></i> Volver a Liga
+                </button>
+                <button class="nav-btn primary-btn" id="view-results-btn" disabled>
+                    <i class="fas fa-award"></i> Ver Resultados
+                </button>
+            </div>
+        </div>
+        
+        <!-- Pantalla de Resultados -->
+        <div id="results-screen" class="screen">
+            <div class="results-container">
+                <div class="winner-trophy">🏆</div>
+                <h2 class="winner-name" id="champion-name">¡Campeón!</h2>
+                <p class="winner-subtitle">Felicitaciones al ganador del Torneo Wii Sports Tenis</p>
+                
+                <div class="champion-card" id="champion-card">
+                    <!-- Información del campeón se cargará aquí -->
+                </div>
+                
+                <div class="ranking-container">
+                    <h3 class="ranking-title">Ranking Final</h3>
+                    <ul class="ranking-list" id="final-ranking">
+                        <!-- El ranking se cargará aquí -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn" id="back-to-playoffs-btn">
+                    <i class="fas fa-arrow-left"></i> Volver a Playoffs
+                </button>
+                <button class="nav-btn primary-btn" id="new-tournament-btn">
+                    <i class="fas fa-plus"></i> Nuevo Torneo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para registrar resultados -->
+    <div class="modal" id="match-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 class="modal-title" id="match-modal-title">Registrar Resultado</h3>
+            
+            <div class="match-players" id="match-players">
+                <!-- Jugadores del partido se cargarán aquí -->
+            </div>
+            
+            <div class="score-inputs">
+                <div class="score-input-group">
+                    <label id="player1-label">Jugador 1</label>
+                    <input type="number" id="player1-score" class="score-input" min="0" max="7" placeholder="Sets">
+                </div>
+                <div class="score-input-group">
+                    <label id="player2-label">Jugador 2</label>
+                    <input type="number" id="player2-score" class="score-input" min="0" max="7" placeholder="Sets">
+                </div>
+            </div>
+            
+            <button class="nav-btn primary-btn" id="save-match-btn">
+                <i class="fas fa-save"></i> Guardar Resultado
+            </button>
+        </div>
+    </div>
+
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2024-11-02",
+  "players": [
+    {
+      "id": 1,
+      "name": "Thiago Santamarina",
+      "country": "Argentina",
+      "style": "Defensivo",
+      "avatar": null,
+      "description": "El Rey de la Tierra Batida, conocido por su increíble resistencia y topspin devastador."
+    },
+    {
+      "id": 2,
+      "name": "Gonzalo Campos",
+      "country": "Argentina",
+      "style": "Completo",
+      "avatar": null,
+      "description": "Maestro del juego completo, con retornos impresionantes y flexibilidad extraordinaria."
+    },
+    {
+      "id": 3,
+      "name": "Joaquin Riedel",
+      "country": "Argentina",
+      "style": "Ofensivo",
+      "avatar": null,
+      "description": "Elegancia y precisión personificadas, con un repertorio de golpes incomparable."
+    },
+    {
+      "id": 4,
+      "name": "Melody Bossio",
+      "country": "Argentina",
+      "style": "Agresivo",
+      "avatar": null,
+      "description": "Joven prodigio con un juego potente y versátil que domina todos los frentes."
+    },
+    {
+      "id": 5,
+      "name": "Augusto Turner",
+      "country": "Argentina",
+      "style": "Estratégico",
+      "avatar": null,
+      "description": "Maestro táctico con un estilo no convencional que desequilibra a sus rivales."
+    },
+    {
+      "id": 6,
+      "name": "Vienni",
+      "country": "Argentina",
+      "style": "Táctico",
+      "avatar": null,
+      "description": "Jugador completo con un gran servicio y volea, heredero del tenis clásico."
+    },
+    {
+      "id": 7,
+      "name": "Santiago Centofanti",
+      "country": "Argentina",
+      "style": "Potente",
+      "avatar": null,
+      "description": "Jugador de potencia pura con un servicio demoledor y golpes desde el fondo."
+    },
+    {
+      "id": 8,
+      "name": "Zoe Billar",
+      "country": "Argentina",
+      "style": "Contundente",
+      "avatar": null,
+      "description": "Golpes planos y potentes con una precisión letal desde la línea de base."
+    }
+  ]
+}
