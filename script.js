@@ -56,7 +56,7 @@ const initialPlayers = [
     },
     { 
         id: 6, 
-        name: "Zoe Billar", 
+        name: "Zoe Villar", 
         number: null,
         avatar: "img/Zoe.jpg",
         country: "Argentina",
@@ -64,7 +64,7 @@ const initialPlayers = [
     },
     { 
         id: 7, 
-        name: "Vienni", 
+        name: "Tomas Vienni", 
         number: null,
         avatar: "img/vienni.jpg",
         country: "Argentina",
@@ -898,4 +898,3 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeTournament();
     setupEventListeners();
 });
-
