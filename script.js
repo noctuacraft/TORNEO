@@ -898,3 +898,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeTournament();
     setupEventListeners();
 });
+
