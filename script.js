@@ -1,76 +1,76 @@
 // Estado del torneo
 let tournamentState = {
-            players: [],
-            drawCompleted: false,
-            leagueMatches: [],
-            standings: [],
-            playoffs: {
-                semifinals: [],
-                final: null
-            },
-            champion: null,
-            currentMatch: null
-        };
+    players: [],
+    drawCompleted: false,
+    leagueMatches: [],
+    standings: [],
+    playoffs: {
+        semifinals: [],
+        final: null
+    },
+    champion: null,
+    currentMatch: null
+};
 
 // Jugadores iniciales con URLs de imágenes de perfil
-       const initialPlayers = [
-            { 
-                id: 1, 
-                name: "Thiago Santamarina", 
-                number: null,
-                avatar: "img/Thiago.jpg",
-                country: "Argentina",
-                style: "Estratégico"
-            },
-            { 
-                id: 2, 
-                name: "Gonzalo Campos", 
-                number: null,
-                avatar: "img/Gonzalo.jpg",
-                country: "Argentina", 
-                style: "Ofensivo"
-            },
-            { 
-                id: 3, 
-                name: "Joaquin Riedel", 
-                number: null,
-                avatar: "img/Joaquin.jpg",
-                country: "Argentina",
-                style: "Veloz"
-            },
-            { 
-                id: 4, 
-                name: "Augusto Turner", 
-                number: null,
-                avatar: "img/Augusto.jpg",
-                country: "Argentina",
-                style: "Preciso"
-            },
-            { 
-                id: 5, 
-                name: "Melody Bosio", 
-                number: null,
-                avatar: "img/Melody.jpg",
-                country: "Argentina",
-                style: "Técnico"
-            },
-            { 
-                id: 6, 
-                name: "Zoe Billar", 
-                number: null,
-                avatar: "img/Zoe.jpg",
-                country: "Argentina",
-                style: "Defensivo"
-            },
-            { 
-                id: 7, 
-                name: "Vienni", 
-                number: null,
-                avatar: "img/vienni.jpg",
-                country: "Argentina",
-                style: "Potente"
-            }
-        ];
+const initialPlayers = [
+    { 
+        id: 1, 
+        name: "Thiago Santamarina", 
+        number: null,
+        avatar: "img/Thiago.jpg",
+        country: "Argentina",
+        style: "Estratégico"
+    },
+    { 
+        id: 2, 
+        name: "Gonzalo Campos", 
+        number: null,
+        avatar: "img/Gonzalo.jpg",
+        country: "Argentina", 
+        style: "Ofensivo"
+    },
+    { 
+        id: 3, 
+        name: "Joaquin Riedel", 
+        number: null,
+        avatar: "img/Joaquin.jpg",
+        country: "Argentina",
+        style: "Veloz"
+    },
+    { 
+        id: 4, 
+        name: "Augusto Turner", 
+        number: null,
+        avatar: "img/Augusto.jpg",
+        country: "Argentina",
+        style: "Preciso"
+    },
+    { 
+        id: 5, 
+        name: "Melody Bosio", 
+        number: null,
+        avatar: "img/Melody.jpg",
+        country: "Argentina",
+        style: "Técnico"
+    },
+    { 
+        id: 6, 
+        name: "Zoe Billar", 
+        number: null,
+        avatar: "img/Zoe.jpg",
+        country: "Argentina",
+        style: "Defensivo"
+    },
+    { 
+        id: 7, 
+        name: "Vienni", 
+        number: null,
+        avatar: "img/vienni.jpg",
+        country: "Argentina",
+        style: "Potente"
+    }
+];
 
 // Inicialización
 function initializeTournament() {
@@ -172,20 +172,49 @@ function startLeaguePhase() {
 function generateLeagueMatches() {
     tournamentState.leagueMatches = [];
     
-    // Generar todos los enfrentamientos posibles (todos contra todos)
-    for (let i = 0; i < tournamentState.players.length; i++) {
-        for (let j = i + 1; j < tournamentState.players.length; j++) {
+    // ORDEN ESPECÍFICO DE PARTIDOS PROPORCIONADO
+    const matchOrder = [
+        { player1Num: 2, player2Num: 7 },  // 1. 2 vs 7
+        { player1Num: 3, player2Num: 6 },  // 2. 3 vs 6
+        { player1Num: 4, player2Num: 5 },  // 3. 4 vs 5
+        { player1Num: 1, player2Num: 7 },  // 4. 1 vs 7
+        { player1Num: 2, player2Num: 5 },  // 5. 2 vs 5
+        { player1Num: 3, player2Num: 4 },  // 6. 3 vs 4
+        { player1Num: 1, player2Num: 6 },  // 7. 1 vs 6
+        { player1Num: 7, player2Num: 5 },  // 8. 7 vs 5
+        { player1Num: 2, player2Num: 3 },  // 9. 2 vs 3
+        { player1Num: 1, player2Num: 5 },  // 10. 1 vs 5
+        { player1Num: 6, player2Num: 4 },  // 11. 6 vs 4
+        { player1Num: 7, player2Num: 3 },  // 12. 7 vs 3
+        { player1Num: 1, player2Num: 4 },  // 13. 1 vs 4
+        { player1Num: 5, player2Num: 3 },  // 14. 5 vs 3
+        { player1Num: 6, player2Num: 2 },  // 15. 6 vs 2
+        { player1Num: 1, player2Num: 3 },  // 16. 1 vs 3
+        { player1Num: 4, player2Num: 2 },  // 17. 4 vs 2
+        { player1Num: 6, player2Num: 7 },  // 18. 6 vs 7
+        { player1Num: 1, player2Num: 2 },  // 19. 1 vs 2
+        { player1Num: 4, player2Num: 7 },  // 20. 4 vs 7
+        { player1Num: 5, player2Num: 6 }   // 21. 5 vs 6
+    ];
+    
+    // Crear partidos en el orden específico
+    matchOrder.forEach((matchPair, index) => {
+        const player1 = tournamentState.players.find(p => p.number === matchPair.player1Num);
+        const player2 = tournamentState.players.find(p => p.number === matchPair.player2Num);
+        
+        if (player1 && player2) {
             tournamentState.leagueMatches.push({
-                id: `match_${i}_${j}`,
-                player1: tournamentState.players[i],
-                player2: tournamentState.players[j],
+                id: `match_${index + 1}`,
+                player1: player1,
+                player2: player2,
                 score1: null,
                 score2: null,
                 winner: null,
-                completed: false
+                completed: false,
+                round: Math.ceil((index + 1) / 3) // Agrupar en rondas de 3 partidos
             });
         }
-    }
+    });
     
     updateStandings();
     updateLeagueDisplay();
@@ -200,6 +229,7 @@ function updateStandings() {
         player.points = 0;
         player.setsWon = 0;
         player.setsLost = 0;
+        player.setDifference = 0;
     });
     
     // Calcular estadísticas basadas en partidos completados
@@ -217,6 +247,10 @@ function updateStandings() {
                 player1.setsLost += match.score2;
                 player2.setsWon += match.score2;
                 player2.setsLost += match.score1;
+                
+                // Calcular diferencia de sets
+                player1.setDifference = player1.setsWon - player1.setsLost;
+                player2.setDifference = player2.setsWon - player2.setsLost;
                 
                 if (match.winner && match.winner.id === player1.id) {
                     player1.matchesWon++;
@@ -261,6 +295,7 @@ function updateStandingsTable() {
     
     tournamentState.standings.forEach((player, index) => {
         const setDifference = (player.setsWon || 0) - (player.setsLost || 0);
+        const setDiffDisplay = setDifference > 0 ? `+${setDifference}` : setDifference;
         
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -276,8 +311,15 @@ function updateStandingsTable() {
             <td>${player.matchesPlayed || 0}</td>
             <td>${player.matchesWon || 0}</td>
             <td>${player.matchesLost || 0}</td>
+            <td>${player.setsWon || 0}-${player.setsLost || 0} (${setDiffDisplay})</td>
             <td><strong>${player.points || 0}</strong></td>
         `;
+        
+        // Resaltar los primeros 4 puestos que clasifican a semifinales
+        if (index < 4) {
+            row.classList.add('qualifying-position');
+        }
+        
         standingsBody.appendChild(row);
     });
 }
@@ -286,52 +328,65 @@ function updateLeagueMatches() {
     const matchesContainer = document.getElementById('league-matches');
     matchesContainer.innerHTML = '';
     
-    tournamentState.leagueMatches.forEach(match => {
-        const matchCard = document.createElement('div');
-        matchCard.className = `match-card ${match.completed ? 'completed' : ''}`;
-        matchCard.dataset.matchId = match.id;
+    // Agrupar partidos por rondas (cada 3 partidos)
+    const rounds = [];
+    for (let i = 0; i < tournamentState.leagueMatches.length; i += 3) {
+        rounds.push(tournamentState.leagueMatches.slice(i, i + 3));
+    }
+    
+    rounds.forEach((roundMatches, roundIndex) => {
+        const roundHeader = document.createElement('div');
+        roundHeader.className = 'round-header';
+        roundHeader.innerHTML = `<h3>Ronda ${roundIndex + 1}</h3>`;
+        matchesContainer.appendChild(roundHeader);
         
-        const player1Class = match.completed && match.winner && match.winner.id === match.player1.id ? 'winner' : '';
-        const player2Class = match.completed && match.winner && match.winner.id === match.player2.id ? 'winner' : '';
-        
-        matchCard.innerHTML = `
-            <div class="match-players">
-                <div class="match-player ${player1Class}">
-                    <div style="display: flex; align-items: center; gap: 5px;">
-                        <div class="player-avatar-small">
-                            <img src="${match.player1.avatar}" alt="${match.player1.name}" onerror="this.src='https://via.placeholder.com/30/007bff/ffffff?text=?'">
+        roundMatches.forEach(match => {
+            const matchCard = document.createElement('div');
+            matchCard.className = `match-card ${match.completed ? 'completed' : ''}`;
+            matchCard.dataset.matchId = match.id;
+            
+            const player1Class = match.completed && match.winner && match.winner.id === match.player1.id ? 'winner' : '';
+            const player2Class = match.completed && match.winner && match.winner.id === match.player2.id ? 'winner' : '';
+            
+            matchCard.innerHTML = `
+                <div class="match-players">
+                    <div class="match-player ${player1Class}">
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <div class="player-avatar-small">
+                                <img src="${match.player1.avatar}" alt="${match.player1.name}" onerror="this.src='https://via.placeholder.com/30/007bff/ffffff?text=?'">
+                            </div>
+                            ${match.player1.name} (#${match.player1.number})
                         </div>
-                        ${match.player1.name} (#${match.player1.number})
+                    </div>
+                    <div class="match-vs">VS</div>
+                    <div class="match-player ${player2Class}">
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <div class="player-avatar-small">
+                                <img src="${match.player2.avatar}" alt="${match.player2.name}" onerror="this.src='https://via.placeholder.com/30/007bff/ffffff?text=?'">
+                            </div>
+                            ${match.player2.name} (#${match.player2.number})
+                        </div>
                     </div>
                 </div>
-                <div class="match-vs">VS</div>
-                <div class="match-player ${player2Class}">
-                    <div style="display: flex; align-items: center; gap: 5px;">
-                        <div class="player-avatar-small">
-                            <img src="${match.player2.avatar}" alt="${match.player2.name}" onerror="this.src='https://via.placeholder.com/30/007bff/ffffff?text=?'">
-                        </div>
-                        ${match.player2.name} (#${match.player2.number})
+                ${match.completed ? `
+                    <div class="match-score">
+                        <span>${match.score1}</span>
+                        <span>-</span>
+                        <span>${match.score2}</span>
                     </div>
-                </div>
-            </div>
-            ${match.completed ? `
-                <div class="match-score">
-                    <span>${match.score1}</span>
-                    <span>-</span>
-                    <span>${match.score2}</span>
-                </div>
-                <div class="match-status completed">
-                    ${match.winner ? `Ganó: ${match.winner.name}` : 'Empate'}
-                </div>
-            ` : `
-                <div class="match-status">
-                    Pendiente
-                </div>
-            `}
-        `;
-        
-        matchCard.addEventListener('click', () => openMatchModal(match));
-        matchesContainer.appendChild(matchCard);
+                    <div class="match-status completed">
+                        ${match.winner ? `Ganó: ${match.winner.name}` : 'Empate'}
+                    </div>
+                ` : `
+                    <div class="match-status">
+                        Pendiente
+                    </div>
+                `}
+            `;
+            
+            matchCard.addEventListener('click', () => openMatchModal(match));
+            matchesContainer.appendChild(matchCard);
+        });
     });
 }
 
@@ -345,7 +400,12 @@ function checkLeagueCompletion() {
     
     if (allMatchesCompleted) {
         startPlayoffsBtn.innerHTML = '<i class="fas fa-trophy"></i> Iniciar Semifinales';
-        updateEVAMessage("¡Fase de liga completada! Los 4 mejores jugadores pasan a semifinales.");
+        
+        // Mostrar quiénes clasifican a semifinales
+        const qualifiers = tournamentState.standings.slice(0, 4);
+        const qualifierNames = qualifiers.map(q => q.name).join(', ');
+        
+        updateEVAMessage(`¡Fase de liga completada! Clasifican a semifinales: ${qualifierNames}`);
     }
 }
 
@@ -432,7 +492,8 @@ function saveMatchResult() {
             }, 1000);
         }
     } else {
-        // Es partido de liga
+        // Es partido de liga - ACTUALIZAR ESTADÍSTICAS PRIMERO
+        updateStandings(); // ¡ESTA LÍNEA FALTABA!
         updateLeagueDisplay();
         updateEVAMessage(`Resultado registrado: ${match.winner.name} gana!`);
         
@@ -443,7 +504,10 @@ function saveMatchResult() {
         if (completedMatches === totalMatches) {
             createConfetti();
             setTimeout(() => {
-                alert('¡Fase de Liga completada! Prepárate para las semifinales.');
+                // Mostrar clasificados
+                const qualifiers = tournamentState.standings.slice(0, 4);
+                const qualifierList = qualifiers.map((q, i) => `${i+1}°: ${q.name}`).join('\n');
+                alert(`¡Fase de Liga completada! \n\nClasificados a Semifinales:\n${qualifierList}`);
             }, 1000);
         }
     }
@@ -456,11 +520,25 @@ function startPlayoffs() {
         return;
     }
     
+    // Asegurarnos de que las estadísticas estén actualizadas
+    updateStandings();
+    
+    // CORREGIDO: Solo los 4 mejores clasifican a semifinales
+    const top4 = tournamentState.standings.slice(0, 4);
+    
+    console.log("Clasificados a semifinales:", top4.map(p => `${p.name} (${p.points} pts)`));
+    
+    // Verificar que tenemos 4 jugadores
+    if (top4.length !== 4) {
+        alert('Error: No se pueden determinar los 4 clasificados');
+        return;
+    }
+    
     // Crear semifinales: 1° vs 4° y 2° vs 3°
     const semifinal1 = {
         id: 'semifinal_1',
-        player1: tournamentState.standings[0],
-        player2: tournamentState.standings[3],
+        player1: top4[0], // 1° puesto
+        player2: top4[3], // 4° puesto
         score1: null,
         score2: null,
         winner: null,
@@ -470,8 +548,8 @@ function startPlayoffs() {
     
     const semifinal2 = {
         id: 'semifinal_2',
-        player1: tournamentState.standings[1],
-        player2: tournamentState.standings[2],
+        player1: top4[1], // 2° puesto
+        player2: top4[2], // 3° puesto
         score1: null,
         score2: null,
         winner: null,
@@ -485,7 +563,11 @@ function startPlayoffs() {
     
     updatePlayoffsDisplay();
     showPlayoffsScreen();
-    updateEVAMessage("¡Semifinales iniciadas! 1° vs 4° y 2° vs 3°. ¡Que comience la eliminatoria!");
+    
+    // Mostrar los emparejamientos de semifinales
+    const matchup1 = `${top4[0].name} vs ${top4[3].name}`;
+    const matchup2 = `${top4[1].name} vs ${top4[2].name}`;
+    updateEVAMessage(`¡Semifinales iniciadas! ${matchup1} y ${matchup2}. ¡Que comience la eliminatoria!`);
 }
 
 function updatePlayoffsDisplay() {
